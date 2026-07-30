@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sandwich — Module</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<svg style="display:none" aria-hidden="true">
+  <symbol id="emblem" viewBox="0 0 100 99">
+    <path d="M 51.88 48.52 C 50.61 48.52 49.30 48.33 47.96 47.89 C 43.65 46.50 40.81 43.14 38.30 40.16 C 36.99 38.62 35.21 36.50 34.18 36.15 C 34.03 36.10 32.84 35.78 29.21 38.57 L 27.57 39.88 C 24.52 42.31 21.08 45.07 16.65 46.04 C 13.24 46.78 9.53 46.10 6.49 44.13 C 3.30 42.06 1.09 38.76 0.28 34.84 L 0.15 33.61 C 0.15 15.08 15.23 0.00 33.76 0.00 L 93.76 0.00 C 97.12 0.00 99.85 2.73 99.85 6.08 C 99.85 9.44 97.12 12.16 93.76 12.16 L 33.76 12.16 C 22.18 12.16 12.72 21.39 12.33 32.87 C 12.50 33.35 12.76 33.70 13.11 33.93 C 13.49 34.17 13.86 34.19 14.06 34.15 C 15.70 33.79 17.87 32.06 19.97 30.38 L 21.81 28.93 C 24.02 27.23 30.77 22.07 38.18 24.66 C 42.35 26.11 45.13 29.41 47.58 32.32 C 48.90 33.87 50.70 36.00 51.69 36.32 C 52.33 36.52 53.96 35.95 58.28 32.10 C 61.93 28.86 68.73 22.84 76.63 25.31 C 80.35 26.47 83.08 29.22 85.26 31.43 L 85.73 31.90 C 86.63 32.80 87.28 33.38 87.76 33.75 C 88.32 30.82 91.21 28.60 94.04 28.76 C 97.39 28.92 100.00 31.68 99.84 35.04 C 99.67 38.43 98.22 41.51 95.74 43.71 C 93.51 45.68 90.70 46.69 87.84 46.51 C 83.38 46.20 80.05 43.43 77.11 40.48 L 76.63 39.99 C 75.45 38.81 73.85 37.18 73.00 36.92 C 72.41 36.73 70.74 37.30 66.37 41.19 C 63.34 43.88 58.14 48.52 51.88 48.52" fill="#FF0D01"/>
+    <path d="M 66.24 98.51 L 6.24 98.51 C 2.88 98.51 0.16 95.78 0.16 92.43 C 0.16 89.07 2.88 86.34 6.24 86.34 L 66.24 86.34 C 77.82 86.34 87.28 77.12 87.67 65.63 C 87.50 65.16 87.24 64.81 86.89 64.58 C 86.51 64.34 86.13 64.31 85.94 64.36 C 84.31 64.71 82.14 66.45 80.04 68.12 L 78.19 69.58 C 75.97 71.28 69.23 76.43 61.82 73.85 C 57.65 72.39 54.87 69.10 52.42 66.19 C 51.10 64.64 49.30 62.51 48.31 62.19 C 47.67 61.99 46.04 62.56 41.72 66.40 C 38.07 69.64 31.27 75.65 23.37 73.19 C 19.64 72.03 16.91 69.27 14.72 67.06 L 14.26 66.61 C 13.37 65.70 12.72 65.13 12.24 64.75 C 11.67 67.68 8.90 69.94 5.96 69.75 C 2.61 69.58 0.00 66.83 0.16 63.47 C 0.33 60.08 1.78 57.00 4.26 54.80 C 6.48 52.82 9.27 51.82 12.16 52.00 C 16.63 52.32 19.95 55.08 22.89 58.02 L 23.36 58.50 C 24.54 59.69 26.15 61.32 27.00 61.58 C 27.59 61.77 29.26 61.21 33.63 57.32 C 37.27 54.08 44.06 48.03 52.04 50.61 C 56.35 52.00 59.19 55.37 61.70 58.34 C 63.01 59.89 64.79 62.00 65.82 62.36 C 65.93 62.40 67.15 62.72 70.79 59.93 L 72.45 58.62 C 75.48 56.19 78.93 53.44 83.34 52.47 C 86.77 51.72 90.49 52.42 93.51 54.38 C 96.70 56.45 98.91 59.74 99.72 63.66 L 99.85 64.89 C 99.85 83.43 84.77 98.51 66.24 98.51" fill="#FF0D01"/>
+  </symbol>
+  <symbol id="emblem-mono" viewBox="0 0 100 99">
+    <path d="M 51.88 48.52 C 50.61 48.52 49.30 48.33 47.96 47.89 C 43.65 46.50 40.81 43.14 38.30 40.16 C 36.99 38.62 35.21 36.50 34.18 36.15 C 34.03 36.10 32.84 35.78 29.21 38.57 L 27.57 39.88 C 24.52 42.31 21.08 45.07 16.65 46.04 C 13.24 46.78 9.53 46.10 6.49 44.13 C 3.30 42.06 1.09 38.76 0.28 34.84 L 0.15 33.61 C 0.15 15.08 15.23 0.00 33.76 0.00 L 93.76 0.00 C 97.12 0.00 99.85 2.73 99.85 6.08 C 99.85 9.44 97.12 12.16 93.76 12.16 L 33.76 12.16 C 22.18 12.16 12.72 21.39 12.33 32.87 C 12.50 33.35 12.76 33.70 13.11 33.93 C 13.49 34.17 13.86 34.19 14.06 34.15 C 15.70 33.79 17.87 32.06 19.97 30.38 L 21.81 28.93 C 24.02 27.23 30.77 22.07 38.18 24.66 C 42.35 26.11 45.13 29.41 47.58 32.32 C 48.90 33.87 50.70 36.00 51.69 36.32 C 52.33 36.52 53.96 35.95 58.28 32.10 C 61.93 28.86 68.73 22.84 76.63 25.31 C 80.35 26.47 83.08 29.22 85.26 31.43 L 85.73 31.90 C 86.63 32.80 87.28 33.38 87.76 33.75 C 88.32 30.82 91.21 28.60 94.04 28.76 C 97.39 28.92 100.00 31.68 99.84 35.04 C 99.67 38.43 98.22 41.51 95.74 43.71 C 93.51 45.68 90.70 46.69 87.84 46.51 C 83.38 46.20 80.05 43.43 77.11 40.48 L 76.63 39.99 C 75.45 38.81 73.85 37.18 73.00 36.92 C 72.41 36.73 70.74 37.30 66.37 41.19 C 63.34 43.88 58.14 48.52 51.88 48.52" fill="currentColor"/>
+    <path d="M 66.24 98.51 L 6.24 98.51 C 2.88 98.51 0.16 95.78 0.16 92.43 C 0.16 89.07 2.88 86.34 6.24 86.34 L 66.24 86.34 C 77.82 86.34 87.28 77.12 87.67 65.63 C 87.50 65.16 87.24 64.81 86.89 64.58 C 86.51 64.34 86.13 64.31 85.94 64.36 C 84.31 64.71 82.14 66.45 80.04 68.12 L 78.19 69.58 C 75.97 71.28 69.23 76.43 61.82 73.85 C 57.65 72.39 54.87 69.10 52.42 66.19 C 51.10 64.64 49.30 62.51 48.31 62.19 C 47.67 61.99 46.04 62.56 41.72 66.40 C 38.07 69.64 31.27 75.65 23.37 73.19 C 19.64 72.03 16.91 69.27 14.72 67.06 L 14.26 66.61 C 13.37 65.70 12.72 65.13 12.24 64.75 C 11.67 67.68 8.90 69.94 5.96 69.75 C 2.61 69.58 0.00 66.83 0.16 63.47 C 0.33 60.08 1.78 57.00 4.26 54.80 C 6.48 52.82 9.27 51.82 12.16 52.00 C 16.63 52.32 19.95 55.08 22.89 58.02 L 23.36 58.50 C 24.54 59.69 26.15 61.32 27.00 61.58 C 27.59 61.77 29.26 61.21 33.63 57.32 C 37.27 54.08 44.06 48.03 52.04 50.61 C 56.35 52.00 59.19 55.37 61.70 58.34 C 63.01 59.89 64.79 62.00 65.82 62.36 C 65.93 62.40 67.15 62.72 70.79 59.93 L 72.45 58.62 C 75.48 56.19 78.93 53.44 83.34 52.47 C 86.77 51.72 90.49 52.42 93.51 54.38 C 96.70 56.45 98.91 59.74 99.72 63.66 L 99.85 64.89 C 99.85 83.43 84.77 98.51 66.24 98.51" fill="currentColor"/>
+  </symbol>
+</svg>
+
+<header class="site">
+  <div class="wrap nav">
+    <a href="index.html" class="logo"><svg class="mark"><use href="#emblem"/></svg>Sandwich</a>
+
+    <nav class="navlinks">
+      <div class="navitem">
+        <a href="#" tabindex="0">Products <svg viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a>
+        <div class="mega mega-products">
+          <div class="mega-eyebrow">15+ modules, one real-time ledger — all live in production</div>
+          <div class="mega-cols" id="megaProductsCols">
+            <!-- populated by JS from MODULES so this menu and module.html always match -->
+          </div>
+          <div class="mega-foot">
+            <span style="font-size:12.5px; color:rgba(30,30,30,0.6);">One connected system — every module shares real-time data.</span>
+            <a href="index.html#features" class="cta-link">See all modules →</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="navitem">
+        <a href="#" tabindex="0">Solutions <svg viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a>
+        <div class="mega mega-solutions">
+          <div class="mega-eyebrow">One platform, two experiences</div>
+          <div class="mega-split">
+            <div class="mega-split-col">
+              <div class="mega-split-h"><span class="chip-ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/></svg></span>Mobile App</div>
+              <p class="mega-split-sub">Offline-first, for every staff role on the floor — every shift.</p>
+              <div class="mega-split-tags">
+                <span class="mega-tag">Procurement</span>
+                <span class="mega-tag">Inventory</span>
+                <span class="mega-tag">Kitchen &amp; Processing</span>
+                <span class="mega-tag">Customer Service</span>
+                <span class="mega-tag">Custom Roles</span>
+              </div>
+            </div>
+            <div class="mega-split-col">
+              <div class="mega-split-h"><span class="chip-ico dark"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg></span>Web Dashboard</div>
+              <p class="mega-split-sub">Full-screen oversight, from any browser, any device.</p>
+              <div class="mega-split-tags">
+                <span class="mega-tag">Super Admin</span>
+                <span class="mega-tag">Branch Manager</span>
+                <span class="mega-tag">Finance Officer</span>
+                <span class="mega-tag">HR</span>
+              </div>
+            </div>
+          </div>
+          <div class="mega-foot">
+            <span style="font-size:12.5px; color:rgba(30,30,30,0.6);">Same ledger, right-sized for how each role actually works.</span>
+            <a href="index.html#access" class="cta-link">See how it splits →</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="navitem">
+        <a href="#" tabindex="0">Resources <svg viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a>
+        <div class="mega mega-resources">
+          <div class="mega-eyebrow">Learn Sandwich, your way</div>
+          <div class="mega-grid cols-3">
+            <div class="mega-row" style="flex-direction:column;"><div class="mega-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M10 9l5 3-5 3z"/></svg></div><p class="mega-title" style="margin-top:12px;">Video Tutorials</p><p class="mega-desc">Walkthroughs of every module.</p></div>
+            <div class="mega-row" style="flex-direction:column;"><div class="mega-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h9l5 5v13a1 1 0 01-1 1H6a1 1 0 01-1-1V4a1 1 0 011-1z"/><path d="M9 13h6M9 17h6"/></svg></div><p class="mega-title" style="margin-top:12px;">Setup Guides</p><p class="mega-desc">Onboard your team in a day.</p></div>
+            <div class="mega-row" style="flex-direction:column;"><div class="mega-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 015 .5c0 1.7-2.3 1.8-2.5 3.5M12 17h.01"/></svg></div><p class="mega-title" style="margin-top:12px;">Help Center</p><p class="mega-desc">Setup, billing &amp; integrations.</p></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="navitem"><a href="index.html#pricing">Pricing</a></div>
+      <div class="navitem"><a href="#">Company</a></div>
+    </nav>
+
+    <div class="navcta">
+      <a href="#" class="signin">Sign in</a>
+      <a href="#" class="btn btn-accent">Get Started <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <section class="module-hero">
+    <div class="wrap">
+      <div class="breadcrumb">
+        <a href="index.html">Sandwich</a><span class="sep">/</span>
+        <a href="index.html#features">Products</a><span class="sep">/</span>
+        <span class="current" id="bcCategory">Operations</span><span class="sep">/</span>
+        <span class="current" id="bcTitle">Module</span>
+      </div>
+
+      <div class="module-hero-top">
+        <div class="module-icon-badge" id="moduleIconBadge"></div>
+        <span class="module-cat-badge" id="moduleCatBadge">Operations</span>
+      </div>
+
+      <h1 id="moduleTitle">Loading module…</h1>
+      <p class="lede" id="moduleTagline"></p>
+
+      <div class="hero-ctas">
+        <a href="#" class="btn btn-accent">See it running live <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <a href="#" class="btn btn-ghost">Talk to us</a>
+      </div>
+
+      <div class="quick-stats" id="quickStats"></div>
+    </div>
+  </section>
+
+  <section class="reveal">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Overview</span>
+        <h2 id="overviewHeading">What this module does</h2>
+        <p class="lede" id="overviewDesc"></p>
+      </div>
+      <div class="feat-grid" id="featureGrid"></div>
+      <div class="ai-strip" id="aiStrip" style="display:none;"></div>
+    </div>
+  </section>
+
+  <section class="alt reveal">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">How it works</span>
+        <h2 id="workflowHeading">Step by step</h2>
+      </div>
+      <div class="steps" id="stepsGrid"></div>
+    </div>
+  </section>
+
+  <section class="reveal">
+    <div class="wrap">
+      <div class="section-head center">
+        <span class="eyebrow" style="justify-content:center;">One system, two experiences</span>
+        <h2>Who touches this on your team</h2>
+        <p class="lede">Frontline staff run it from the mobile app. Owners, managers, and finance run it from the web dashboard — both reading and writing the same real-time ledger.</p>
+      </div>
+      <div class="access-grid">
+        <div class="access-card glass sweep-on-hover">
+          <div class="parallax-field">
+            <div class="pl" data-speed="0.1" style="top:-80px; right:-80px; width:260px; height:260px; border-radius:50%; background:radial-gradient(circle, rgba(254,198,15,0.35), rgba(254,198,15,0) 70%);"></div>
+          </div>
+          <span class="access-badge">Mobile App</span>
+          <h3>On the floor</h3>
+          <p class="access-sub">Offline-first — actions queue on the device and sync automatically the moment connectivity returns.</p>
+          <ul class="access-roles" id="accessMobileList"></ul>
+        </div>
+        <div class="access-card glass sweep-on-hover">
+          <div class="parallax-field">
+            <div class="pl" data-speed="0.14" style="bottom:-90px; left:-90px; width:280px; height:280px; border-radius:50%; background:radial-gradient(circle, rgba(255,13,1,0.22), rgba(255,13,1,0) 70%);"></div>
+          </div>
+          <span class="access-badge dark">Web Dashboard</span>
+          <h3>Running the business</h3>
+          <p class="access-sub">Full-screen analytics, approvals, and configuration from any browser.</p>
+          <ul class="access-roles" id="accessWebList"></ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="alt reveal">
+    <div class="wrap">
+      <div class="section-head center">
+        <span class="eyebrow" style="justify-content:center;">Connected</span>
+        <h2>Works with the tools you already use</h2>
+        <p class="lede">This module syncs data in and out through Sandwich's native integrations.</p>
+      </div>
+      <div class="integration-row" id="integrationRow" style="justify-content:center;"></div>
+    </div>
+  </section>
+
+  <section class="reveal">
+    <div class="wrap">
+      <div class="section-head center">
+        <span class="eyebrow" style="justify-content:center;">Common questions</span>
+        <h2>Before you talk to us</h2>
+      </div>
+      <div class="faq-list" id="faqList"></div>
+    </div>
+  </section>
+
+  <section class="alt reveal">
+    <div class="wrap">
+      <div class="section-head center">
+        <span class="eyebrow" style="justify-content:center;">Keep exploring</span>
+        <h2>Related modules</h2>
+      </div>
+      <div class="related-grid" id="relatedGrid"></div>
+    </div>
+  </section>
+
+  <section style="padding-top:0;">
+    <div class="wrap">
+      <div class="cta-final reveal">
+        <div class="parallax-field">
+          <div class="pl" data-speed="0.18" style="top:-200px; left:50%; transform:translateX(-50%); width:700px; height:700px; border-radius:50%; background:radial-gradient(circle, rgba(255,13,1,0.4), rgba(255,13,1,0) 68%);"></div>
+        </div>
+        <span class="eyebrow">Ready when you are</span>
+        <h2 id="ctaHeading">See this module running on a restaurant like yours</h2>
+        <p>Book a 30-minute live demo with your real use cases — no credit card required.</p>
+        <div class="hero-ctas">
+          <a href="#" class="btn btn-accent">Book your free demo <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          <a href="#" class="btn btn-ghost" style="border-color:#5A4A40; color:#fff;">Chat with us</a>
+        </div>
+        <div class="trust">No credit card required · 22-week deployment guarantee · Full onboarding included</div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="foot-brand">
+        <a href="index.html" class="logo"><svg class="mark"><use href="#emblem"/></svg>Sandwich</a>
+        <p>The restaurant operations platform that connects every department into one real-time system.</p>
+      </div>
+      <div class="foot-col"><h4>Product</h4>
+        <a href="module.html?slug=procurement">Procurement &amp; Purchase Orders</a><a href="module.html?slug=inventory">Inventory &amp; Stock Control</a><a href="module.html?slug=kitchen">Kitchen &amp; Central Production</a><a href="module.html?slug=accounting">Accounting &amp; Finance</a><a href="module.html?slug=pos">POS &amp; Table Management</a><a href="module.html?slug=crm">CRM &amp; Loyalty</a>
+      </div>
+      <div class="foot-col"><h4>Solutions</h4>
+        <a href="index.html#access">Mobile App</a><a href="index.html#access">Web Dashboard</a><a href="index.html#solutions">Super Admin</a><a href="index.html#solutions">Branch Manager</a><a href="index.html#solutions">Finance Officer</a><a href="index.html#solutions">Supplier Portal</a>
+      </div>
+      <div class="foot-col"><h4>Resources</h4>
+        <a href="index.html#resources">Video Tutorials</a><a href="index.html#resources">Setup Guides</a><a href="index.html#resources">Help Center</a>
+      </div>
+      <div class="foot-col"><h4>Company</h4>
+        <a href="#">About</a><a href="index.html#pricing">Pricing</a><a href="#">Contact</a><a href="#">Careers</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Sandwich. All rights reserved.</span>
+      <div class="socials"><a href="#">Privacy</a><a href="#">Terms</a><a href="#">Security</a></div>
+    </div>
+  </div>
+</footer>
+
+<button id="chatToggle" aria-label="Open chat assistant">
+  <span class="ring"></span>
+  <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg>
+  <span class="badge-dot"></span>
+</button>
+
+<div id="chatPanel">
+  <div class="chat-head">
+    <div class="av"><svg><use href="#emblem-mono" style="color:#fff"/></svg></div>
+    <div class="meta"><div class="nm">Sandwich Assistant</div><div class="st"><span class="d"></span>Online now</div></div>
+    <button class="close" id="chatClose" aria-label="Close chat"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
+  </div>
+  <div class="chat-body" id="chatBody">
+    <div class="msg bot">Hi 👋 I'm the Sandwich assistant. Ask me about pricing, features, or book a live demo — what can I help with?</div>
+    <div class="quick-replies" id="quickReplies">
+      <button class="chip" data-q="What plans and pricing do you offer?">Pricing</button>
+      <button class="chip" data-q="What features does Sandwich include?">Features</button>
+      <button class="chip" data-q="I'd like to book a demo">Book a demo</button>
+      <button class="chip" data-q="I need help with setup">Support</button>
+    </div>
+  </div>
+  <div class="chat-input">
+    <input type="text" id="chatInput" placeholder="Type a message…">
+    <button id="chatSend" aria-label="Send"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg></button>
+  </div>
+</div>
+
+<script>
+/* =====================================================================
+   ICONS — small shared path library so module data stays compact
+   ===================================================================== */
+const ICONS = {
+  box: '<path d="M3 9l9-6 9 6v10a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/><path d="M9 21V12h6v9"/>',
+  truck: '<path d="M3 7h11v9H3zM14 10h4l3 3v3h-7z"/><circle cx="7" cy="18" r="1.6"/><circle cx="17.5" cy="18" r="1.6"/>',
+  users: '<circle cx="9" cy="7" r="3.2"/><path d="M2 21c0-4 3-6.5 7-6.5S16 17 16 21"/><path d="M17 8.5c1.6.3 2.8 1.5 2.8 3.2M22 21c0-2.8-1.7-4.8-4-5.6"/>',
+  chef: '<path d="M6 3v7a3 3 0 006 0V3M9 10v11M18 3c-2 2-2 5 0 7v8"/>',
+  transfer: '<path d="M7 7h11M14 3l4 4-4 4M17 17H6M10 21l-4-4 4-4"/>',
+  coin: '<circle cx="12" cy="12" r="9"/><path d="M9 12h6M12 9v3M12 15v0"/>',
+  chart: '<path d="M4 4v16h16M8 15v3M12 10v8M16 6v12"/>',
+  forecast: '<path d="M4 19h16M7 15l3-4 3 2 4-6"/><circle cx="17" cy="7" r="1.4"/>',
+  wallet: '<path d="M3 7a2 2 0 012-2h12a2 2 0 012 2v10a2 2 0 01-2 2H5a2 2 0 01-2-2V7z"/><path d="M16 12h3"/>',
+  reports: '<path d="M4 4h16v4H4zM4 12h10v8H4zM17 12h3v8h-3z"/>',
+  pos: '<rect x="4" y="3" width="16" height="12" rx="2"/><path d="M8 21h8M12 15v6"/>',
+  globe: '<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 3 2.5 15 0 18M12 3c-2.5 3-2.5 15 0 18"/>',
+  gift: '<rect x="3" y="8" width="18" height="13" rx="1"/><path d="M12 8v13M3 8h18M12 8c-1.2-2.6-3-4-4.5-4C5.8 4 5 5 5 6.2 5 7.6 6.5 8 12 8zM12 8c1.2-2.6 3-4 4.5-4C18.2 4 19 5 19 6.2 19 7.6 17.5 8 12 8z"/>',
+  chat: '<path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/>',
+  map: '<path d="M9 20l-6-2V4l6 2 6-2 6 2v14l-6-2-6 2z"/><path d="M9 6v14M15 4v14"/>',
+  check: '<path d="M3 8l3.5 3.5L13 5" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>',
+  arrow: '<path d="M7 17L17 7M8 7h9v9"/>'
+};
+function ico(name, cls){ return '<svg class="'+(cls||'')+'" viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">'+ICONS[name]+'</svg>'; }
+
+/* =====================================================================
+   MODULES — the single source of truth for every mega-menu item.
+   Adding a module here automatically adds it to the nav mega menu AND
+   makes module.html?slug=<key> render its full detail page.
+   ===================================================================== */
+const CATS = {
+  ops: "Operations",
+  money: "Money & Growth",
+  foh: "Front of House & People"
+};
+
+const MODULES = {
+  procurement: { cat:"ops", icon:"box", title:"Procurement & Purchase Orders",
+    tagline:"Every order routes through approval and lands as a matched GRN — nothing gets bought on a hunch.",
+    stats:[["3","approval stages, fully configurable"],["100%","POs auto-linked to GRNs on delivery"],["0","orders placed without a budget check"]],
+    desc:"Procurement is where discipline starts. Staff raise purchase requests against live stock levels, managers approve against budget, and every delivery is matched line-by-line before it touches the ledger.",
+    features:[["check","Draft & approve POs","Multi-stage approval routing based on branch, category, or spend threshold."],
+      ["truck","Supplier catalogs & pricing","Standing price lists per supplier, with historical price tracking built in."],
+      ["box","GRN matching","Goods received are matched against the PO automatically, flagging shortfalls."],
+      ["chart","AI invoice OCR","Scans supplier invoices and pre-fills the GRN for a human to confirm."]],
+    ai:[["AI Invoice OCR","Auto-fills GRN fields from a photographed or emailed supplier invoice."],["Price Variance Alerts","Flags a line item priced outside its normal range before it's approved."]],
+    steps:[["Request","Any approved role raises a purchase request against a category or recipe."],
+      ["Approve","Routes to the right approver based on branch and spend threshold."],
+      ["Send to supplier","Approved POs go out with your standing pricing attached."],
+      ["Receive & match","GRN is checked against the PO; discrepancies are flagged, not hidden."]],
+    accessMobile:[["Procurement staff","raise purchase requests, scan GRNs on delivery"],["Branch teams","flag damaged or short deliveries with photo proof"],["Any custom role","request stock without needing dashboard access"]],
+    accessWeb:[["Branch Manager","approves requests within their threshold"],["Super Admin","sets approval rules and views spend by supplier"],["Finance Officer","reconciles POs against budget in real time"]],
+    integrations:["Paystack","QuickBooks","Xero","WhatsApp Business"],
+    faqs:[["Can I set different approval limits per branch?","Yes — approval thresholds, routing, and required approvers are configurable per branch or department."],
+      ["What happens if a delivery doesn't match the PO?","The GRN is flagged for review instead of posting silently, so stock and cost only update once someone signs off on the discrepancy."]],
+    related:["inventory","suppliers","budgets"] },
+
+  inventory: { cat:"ops", icon:"box", title:"Inventory & Stock Control",
+    tagline:"Real-time stock levels across every branch, with blind counts and expiry tracking that catch shrinkage early.",
+    stats:[["80%","reduction in stock discrepancies within 60 days"],["Live","stock levels synced across every branch"],["Auto","reorder alerts at your set thresholds"]],
+    desc:"Stock control validates every delivery, tracks expiry down to the batch, and gives you blind counts so nobody can count to the number they expect.",
+    features:[["box","Blind stock counts","Staff count without seeing the expected number, protecting count accuracy."],
+      ["chart","Reorder alerts","Automatic low-stock flags feed straight into procurement's draft POs."],
+      ["truck","Expiry & batch tracking","FIFO suggestions and expiry alerts reduce spoilage before it happens."],
+      ["chef","Wastage logging","One-tap waste capture with reason codes, rolled into cost reporting."]],
+    ai:[["Variance Detection","Flags unusual stock movements or count discrepancies for review."]],
+    steps:[["Receive","Deliveries post to stock only after GRN matching is confirmed."],
+      ["Track","Batches, expiry dates, and locations stay visible in real time."],
+      ["Count","Scheduled blind counts reconcile physical stock to system stock."],
+      ["Reorder","Low-stock items generate draft purchase requests automatically."]],
+    accessMobile:[["Inventory staff","perform blind counts, scan barcodes and QR labels"],["Kitchen staff","log waste and pull stock for prep"],["Any custom role","view stock relevant to their department only"]],
+    accessWeb:[["Branch Manager","reviews count variances and approves write-offs"],["Super Admin","benchmarks stock accuracy across branches"],["Finance Officer","values inventory for daily P&L"]],
+    integrations:["Paystack","QuickBooks","Xero"],
+    faqs:[["How does blind counting work?","Staff enter what they physically count without seeing the expected system quantity, and variances are reconciled afterward by a manager."],
+      ["Does it track expiry by batch?","Yes — each received batch carries its own expiry date, and the system surfaces FIFO pick suggestions and expiry alerts."]],
+    related:["procurement","kitchen","transfers"] },
+
+  suppliers: { cat:"ops", icon:"truck", title:"Supplier Management",
+    tagline:"Onboard, score, and negotiate with suppliers using the same data your procurement team already sees.",
+    stats:[["20+","native integrations across the platform"],["Full","price history per supplier, per item"],["1","supplier portal for POs and GRNs"]],
+    desc:"Every supplier gets a scorecard built from real delivery data — on-time rate, price consistency, and quality flags — so renewal conversations are backed by evidence, not memory.",
+    features:[["truck","Supplier onboarding","Structured intake for banking details, categories, and standing terms."],
+      ["chart","Performance scorecards","On-time delivery rate, price variance, and quality flags per supplier."],
+      ["coin","Price history","Every price change is logged against the item and the supplier."],
+      ["users","Supplier portal","Suppliers see their own POs and GRN status without dashboard access."]],
+    steps:[["Onboard","Capture supplier details, categories, and payment terms."],
+      ["Quote & price","Standing prices load into procurement's catalog."],
+      ["Deliver","Performance is scored automatically against each GRN."],
+      ["Review","Scorecards inform renewal and renegotiation decisions."]],
+    accessMobile:[["Procurement staff","log delivery issues against a supplier in the moment"],["Branch teams","flag quality problems with photo evidence"]],
+    accessWeb:[["Super Admin","reviews scorecards before renewing supplier contracts"],["Finance Officer","tracks supplier spend and payment terms"]],
+    integrations:["Paystack","WhatsApp Business","QuickBooks"],
+    faqs:[["Can suppliers see their own orders?","Yes, through a limited supplier portal view scoped to their own POs and GRN status."],
+      ["How is a supplier's score calculated?","From on-time delivery rate, price consistency against agreed terms, and quality flags raised at receiving."]],
+    related:["procurement","inventory","payments"] },
+
+  recipes: { cat:"ops", icon:"chef", title:"Recipe Management & AI Yield Calc",
+    tagline:"Every dish becomes a costed recipe, with AI yield calculation turning raw stock into accurate plate cost.",
+    stats:[["95%+","accuracy on daily automated cost data"],["Auto","yield loss factored into every recipe cost"],["Live","recipe cost updates as ingredient prices move"]],
+    desc:"Recipes aren't just instructions here — they're the bridge between your stock ledger and your menu pricing, with AI-estimated yield loss so plate cost reflects reality, not the raw invoice price.",
+    features:[["chef","Recipe cards","Structured ingredients, method, and sub-recipes for prepped components."],
+      ["chart","AI yield calculation","Estimates trim, cook, and shrinkage loss per ingredient automatically."],
+      ["coin","Cost per dish","Real-time plate cost as ingredient prices and yields change."],
+      ["box","Sub-recipe nesting","Build prepped bases once and reuse them across the menu."]],
+    ai:[["AI Yield Calc","Learns shrinkage and trim loss per ingredient from your own kitchen's data over time."]],
+    steps:[["Build","Create the recipe with ingredients, quantities, and method."],
+      ["Calculate","AI yield calc factors in loss to produce true cost per portion."],
+      ["Prep","Kitchen staff follow the recipe card during production."],
+      ["Review","Cost per dish feeds directly into menu profitability reporting."]],
+    accessMobile:[["Kitchen staff","follow recipe cards and log actual yield during prep"],["Processing staff","build sub-recipes for batch production"]],
+    accessWeb:[["Finance Officer","reviews cost per dish against menu price"],["Branch Manager","standardizes recipes across the kitchen team"]],
+    integrations:["QuickBooks","Xero"],
+    faqs:[["How accurate is the AI yield estimate?","It starts from category-level benchmarks and refines toward your own kitchen's logged actuals the more the recipe is prepared."],
+      ["Can one recipe feed into another?","Yes — sub-recipes for prepped bases (sauces, doughs, marinades) can be nested inside finished dish recipes."]],
+    related:["kitchen","budgets","forecasting"] },
+
+  kitchen: { cat:"ops", icon:"chef", title:"Kitchen, Central Production & KDS",
+    tagline:"Orders route straight to the right station, with a live 3D view of what's cooking across the floor.",
+    stats:[["30%","faster order-to-service time"],["Live","kitchen display routing by station"],["1","central production view across branches"]],
+    desc:"The Kitchen Display System routes tickets to the right station the moment an order fires, while the 3D kitchen view gives a manager a glance at what's backed up before it becomes a problem.",
+    features:[["chef","Kitchen Display System","Digital tickets replace paper, routed automatically by station."],
+      ["box","3D kitchen activity view","A live spatial view of order status across every station."],
+      ["truck","Central production","Batch-produce shared components for multiple branches from one kitchen."],
+      ["check","Formal validation","Prepped output is confirmed before it posts back to stock."]],
+    steps:[["Fire","Orders from POS or online channels hit the KDS instantly."],
+      ["Route","Tickets are routed to the correct station automatically."],
+      ["Prep","Staff work the recipe card and mark items ready."],
+      ["Validate","Completed prep is confirmed, updating stock and cost."]],
+    accessMobile:[["Kitchen staff","view and clear KDS tickets by station"],["Processing staff","log batch production against central recipes"]],
+    accessWeb:[["Branch Manager","monitors kitchen throughput via the 3D view"],["Super Admin","compares kitchen speed across branches"]],
+    integrations:["Glovo","Chowdeck","Uber Eats","Bolt Food"],
+    faqs:[["Does the KDS replace paper tickets entirely?","Most kitchens move fully digital, though tickets can still be printed as a backup during setup."],
+      ["Can one kitchen produce for multiple branches?","Yes — central production lets one kitchen batch-prep shared items and transfer them to satellite branches."]],
+    related:["recipes","transfers","pos"] },
+
+  transfers: { cat:"ops", icon:"transfer", title:"Inter-Branch Transfers & Logistics",
+    tagline:"Move stock between branches with the same formal acceptance step as any external delivery.",
+    stats:[["100%","transfers matched on arrival before stock updates"],["Live","in-transit visibility across branches"],["0","stock moved without a receiving confirmation"]],
+    desc:"A transfer out of one branch isn't stock received at another until someone confirms it landed — so shrinkage between locations shows up immediately instead of vanishing into a rounding error.",
+    features:[["transfer","Transfer requests","Branches request stock from each other or from central production."],
+      ["truck","In-transit tracking","Visibility into what's moving, from where, and expected arrival."],
+      ["check","Receiving confirmation","Stock only updates at the destination once it's formally accepted."],
+      ["chart","Reconciliation reporting","Variances between sent and received are visible immediately."]],
+    steps:[["Request","A branch requests stock from another branch or central kitchen."],
+      ["Dispatch","The sending branch logs what's going out and how."],
+      ["Transit","Status is visible to both branches until it arrives."],
+      ["Receive","The destination confirms quantity before stock posts."]],
+    accessMobile:[["Branch teams","request and dispatch transfers on the floor"],["Logistics staff","update in-transit status from the road"]],
+    accessWeb:[["Branch Manager","tracks incoming and outgoing transfers"],["Super Admin","reviews cross-branch shrinkage patterns"]],
+    integrations:["WhatsApp Business"],
+    faqs:[["What happens if the received quantity doesn't match?","The variance is flagged for both branches to resolve rather than silently adjusting either ledger."],
+      ["Can transfers come from central production instead of another branch?","Yes — central production output can be transferred to any branch the same way stock moves between branches."]],
+    related:["inventory","kitchen","branches"] },
+
+  accounting: { cat:"money", icon:"coin", title:"Accounting & Finance",
+    tagline:"A daily P&L in your inbox by morning, synced to the accounting software you already use.",
+    stats:[["95%+","accuracy on daily automated P&L"],["18","built-in accounting capabilities"],["Auto","sync to QuickBooks or Xero"]],
+    desc:"Every sale, purchase, and payroll entry across the platform posts to one ledger, so the daily P&L is assembled automatically instead of rebuilt by hand from five different sources.",
+    features:[["coin","Automated daily P&L","Revenue, cost, and margin assembled from live operational data."],
+      ["check","Journal entries","Every stock movement and payment posts as a proper journal entry."],
+      ["chart","Cash flow tracking","See cash position across branches without waiting on month-end."],
+      ["box","QuickBooks / Xero sync","Journal entries, invoices, and tax rates sync automatically."]],
+    steps:[["Capture","Sales, purchases, and payroll post to the ledger as they happen."],
+      ["Classify","Entries are categorized against your chart of accounts."],
+      ["Reconcile","Bank and wallet balances are matched against the ledger."],
+      ["Report","Daily P&L and cash flow are ready each morning."]],
+    accessMobile:[["Branch teams","see daily sales and cost summaries for their branch"]],
+    accessWeb:[["Finance Officer","closes the books daily and manages the chart of accounts"],["Super Admin","reviews consolidated financials across branches"]],
+    integrations:["QuickBooks","Xero","Paystack"],
+    faqs:[["Do I need to double-enter anything in QuickBooks or Xero?","No — the accounting module syncs journal entries, invoices, suppliers, and tax rates automatically."],
+      ["How current is the daily P&L?","It's assembled from the same real-time ledger every other module posts to, so it reflects the previous full day of operations each morning."]],
+    related:["budgets","reports","payments"] },
+
+  budgets: { cat:"money", icon:"chart", title:"Budgets & Cost Analytics",
+    tagline:"Set a budget per branch, per category, and see the variance the moment it starts to drift.",
+    stats:[["Live","budget vs actual by branch and category"],["Auto","food cost ratio tracked against target"],["Early","variance alerts before month-end"]],
+    desc:"Cost analytics ties every purchase and recipe back to a budget line, so a category running hot shows up as a variance this week — not as a surprise on the monthly statement.",
+    features:[["chart","Budget vs actual","Track spend against budget by branch, category, or supplier."],
+      ["coin","Food cost ratio","Automatic tracking of cost-of-goods against sales, by branch."],
+      ["check","Target variance alerts","Flags categories drifting away from their target range."],
+      ["box","Cost per dish rollups","Recipe-level cost feeds directly into category budgets."]],
+    steps:[["Set","Define budgets by branch, category, or supplier."],
+      ["Track","Actual spend posts against budget automatically."],
+      ["Flag","Variances outside target range are surfaced early."],
+      ["Adjust","Reforecast or renegotiate before it compounds."]],
+    accessMobile:[["Branch teams","see their own category spend against target"]],
+    accessWeb:[["Finance Officer","builds and adjusts budgets across categories"],["Super Admin","benchmarks cost ratios across branches"]],
+    integrations:["QuickBooks","Xero"],
+    faqs:[["Can budgets be set per branch instead of company-wide?","Yes — budgets can be defined at the branch, category, or supplier level independently."],
+      ["Does this connect to recipe costing?","Yes — recipe-level cost from the Recipe Management module rolls up directly into category budgets."]],
+    related:["accounting","forecasting","reports"] },
+
+  forecasting: { cat:"money", icon:"forecast", title:"AI Forecasting & Predictive Ordering",
+    tagline:"A 14-day sales forecast that explodes into a supplier-ready draft purchase order.",
+    stats:[["14-day","self-improving demand forecast"],["Auto","recipe explosion into ingredient needs"],["Draft","supplier-ready PO generated for review"]],
+    desc:"Forecasting turns your sales history into a per-item demand curve, explodes that through your recipes into raw ingredient needs, and drafts the purchase order for a human to approve — never to auto-send.",
+    features:[["forecast","14-day sales forecasting","Self-improving demand prediction by branch and menu item."],
+      ["chef","Recipe explosion","Forecasted dish demand converts into raw ingredient quantities."],
+      ["box","Predictive draft POs","A draft purchase order is generated from the forecasted need."],
+      ["chart","Variance detection","Flags demand or price patterns that break from the forecast."]],
+    steps:[["Forecast","Predict demand per item, per branch, for the next 14 days."],
+      ["Explode","Convert dish-level demand into ingredient-level need via recipes."],
+      ["Draft","Generate a draft PO sized to forecasted demand."],
+      ["Review","A human approves, edits, or rejects before it sends."]],
+    accessMobile:[["Branch teams","review and confirm draft POs generated for their branch"]],
+    accessWeb:[["Super Admin","monitors forecast accuracy across the network"],["Finance Officer","reviews forecast-driven spend before approval"]],
+    integrations:["QuickBooks","Xero"],
+    faqs:[["Does the AI ever place orders automatically?","No — every AI-generated draft PO is reviewable and overridable by your team before anything is sent to a supplier."],
+      ["How does the forecast improve over time?","It's self-improving: as actual sales come in, the model adjusts its per-item, per-branch predictions for the following weeks."]],
+    related:["procurement","recipes","budgets"] },
+
+  payments: { cat:"money", icon:"wallet", title:"Payments & Wallets",
+    tagline:"Every payment processed, reconciled, and receipted — with refunds routed through approval.",
+    stats:[["Reconciled","wallets across every branch"],["Auto","receipts on every transaction"],["Logged","refund approvals with full audit trail"]],
+    desc:"Payments processed through Paystack post straight into reconciled branch wallets, so cash position is always current and refunds go through the same approval discipline as any other financial action.",
+    features:[["wallet","Reconciled wallets","Branch wallets stay matched to processed payments automatically."],
+      ["check","Refund approvals","Refunds route through approval before funds move."],
+      ["box","Receipting","Every transaction generates a receipt automatically."],
+      ["coin","Split payments","Multiple payment methods on a single order, reconciled together."]],
+    steps:[["Charge","A payment is taken via Paystack at POS or online."],
+      ["Reconcile","The transaction matches against the branch wallet."],
+      ["Receipt","A receipt generates and can be sent to the customer."],
+      ["Refund","Refund requests route through approval before reversing."]],
+    accessMobile:[["Cashiers","take payments and issue receipts at the point of sale"]],
+    accessWeb:[["Finance Officer","reconciles wallets and approves refunds"],["Super Admin","monitors payment volume across branches"]],
+    integrations:["Paystack"],
+    faqs:[["Which payment processor is this built on?","Payments are processed through Paystack, with wallets, receipts, and refund logs reconciled inside Sandwich."],
+      ["Can a customer pay with more than one method?","Yes — split payments across multiple methods are supported and reconciled as a single transaction."]],
+    related:["pos","accounting","suppliers"] },
+
+  reports: { cat:"money", icon:"reports", title:"Reports & Business Intelligence",
+    tagline:"A BCG-style menu matrix and cross-branch benchmarking, without exporting a single spreadsheet.",
+    stats:[["1","view for cross-branch benchmarking"],["Auto","BCG menu profitability matrix"],["Export","dashboards ready to share"]],
+    desc:"Reporting pulls from the same ledger every other module writes to, so the menu profitability matrix and cross-branch benchmarks reflect this morning's numbers, not last month's export.",
+    features:[["reports","BCG menu matrix","Classifies menu items by margin and popularity automatically."],
+      ["chart","Cross-branch benchmarking","Compare cost ratios, speed, and margin across locations."],
+      ["box","Exportable dashboards","Share a live view or export a snapshot for a meeting."],
+      ["check","Custom report builder","Build views specific to a role or a recurring question."]],
+    steps:[["Collect","Every module writes its activity to the shared ledger."],
+      ["Classify","Menu items and branches are scored against your goals."],
+      ["Compare","Benchmark performance across branches side by side."],
+      ["Share","Export or share a live dashboard with stakeholders."]],
+    accessMobile:[["Branch Manager","views their own branch's daily performance summary"]],
+    accessWeb:[["Super Admin","benchmarks all branches from one console"],["Finance Officer","builds custom views for recurring reviews"]],
+    integrations:["QuickBooks","Xero"],
+    faqs:[["What is the BCG menu matrix?","It classifies each menu item by margin and sales volume, similar to the BCG growth-share matrix, to surface which dishes to promote, fix, or retire."],
+      ["Can I export a report to share outside the platform?","Yes — dashboards can be exported as a snapshot or shared as a live link depending on the recipient's access."]],
+    related:["accounting","budgets","branches"] },
+
+  pos: { cat:"foh", icon:"pos", title:"POS & Table Management",
+    tagline:"Full-screen table service with split bills, and every sale depleting stock the instant it's rung in.",
+    stats:[["Live","stock depletion on every sale"],["Split","bills across multiple payment methods"],["1","screen for aggregator orders"]],
+    desc:"POS isn't a separate system bolted onto the ledger — every sale posts to stock and finance in real time, and orders from delivery aggregators land in the same queue as a table order.",
+    features:[["pos","Table & floor plan","Visual floor management with live table status."],
+      ["wallet","Split bills","Multiple payment methods on one bill, reconciled together."],
+      ["chef","KDS routing","Orders fire straight to the kitchen display on submission."],
+      ["globe","Aggregator orders","Glovo, Chowdeck, Uber Eats, and Bolt Food orders in one queue."]],
+    steps:[["Order","Waitstaff or a cashier takes the order at the table or counter."],
+      ["Fire","The ticket routes to the KDS automatically."],
+      ["Serve","Kitchen marks items ready; service completes the order."],
+      ["Settle","Payment is taken, split if needed, and stock depletes instantly."]],
+    accessMobile:[["Cashiers & waitstaff","take orders, split bills, manage tables"]],
+    accessWeb:[["Branch Manager","monitors table turnover and daily sales"],["Super Admin","compares POS performance across branches"]],
+    integrations:["Paystack","Glovo","Chowdeck","Uber Eats","Bolt Food"],
+    faqs:[["Do you have your own delivery riders?","No — Sandwich integrates directly with the rider and aggregator systems you already use, so dispatch and order status flow into your ledger."],
+      ["Does a sale update stock immediately?","Yes — a completed sale depletes stock and posts to the ledger the moment it settles."]],
+    related:["online-ordering","payments","kitchen"] },
+
+  "online-ordering": { cat:"foh", icon:"globe", title:"Online Ordering & Aggregators",
+    tagline:"Glovo, Chowdeck, Uber Eats, and Bolt Food orders land in one queue — no juggling four tablets.",
+    stats:[["4","aggregators integrated out of the box"],["1","unified order queue"],["Live","stock and sales sync per channel"]],
+    desc:"Aggregator orders arrive in the same queue as your dine-in tickets, post to stock the same way, and roll into the same reporting — so channel performance is comparable, not siloed.",
+    features:[["globe","Unified order queue","All channels land in one queue instead of separate tablets."],
+      ["chef","KDS integration","Aggregator orders route to the kitchen display like any other."],
+      ["chart","Channel reporting","Compare sales, cost, and speed by ordering channel."],
+      ["check","Menu sync","Push menu and price changes to every channel at once."]],
+    steps:[["Receive","An order arrives from any connected aggregator."],
+      ["Route","It lands in the same queue and fires to the KDS."],
+      ["Fulfil","Kitchen preps it like any other order."],
+      ["Reconcile","Sales and commissions post to the ledger by channel."]],
+    accessMobile:[["Kitchen & FOH staff","see aggregator orders alongside dine-in tickets"]],
+    accessWeb:[["Branch Manager","compares channel performance and commission cost"],["Super Admin","manages which aggregators are active per branch"]],
+    integrations:["Glovo","Chowdeck","Uber Eats","Bolt Food"],
+    faqs:[["Does this replace the aggregator's own rider app?","No — Sandwich doesn't operate riders. It integrates with each aggregator's existing dispatch so orders and status sync into your ledger."],
+      ["Can I push a price change to all channels at once?","Yes — menu and price updates sync to every connected channel from a single edit."]],
+    related:["pos","crm","reports"] },
+
+  crm: { cat:"foh", icon:"gift", title:"CRM, Loyalty & Gift Cards",
+    tagline:"Customer profiles, loyalty points, and gift cards that work the same across every branch.",
+    stats:[["1","customer profile across all branches"],["Auto","loyalty points on qualifying sales"],["Live","gift card balance at any location"]],
+    desc:"A customer's loyalty balance and gift card credit follow them between branches, because it's the same ledger — not a per-branch spreadsheet someone forgot to update.",
+    features:[["users","Customer profiles","Purchase history and preferences visible at any branch."],
+      ["gift","Loyalty points","Points accrue and redeem automatically at checkout."],
+      ["wallet","Gift cards","Issue and redeem gift cards with a live, shared balance."],
+      ["chart","Campaign tracking","See which promotions actually drove repeat visits."]],
+    steps:[["Capture","A customer profile is created or matched at checkout."],
+      ["Accrue","Loyalty points post automatically on qualifying sales."],
+      ["Redeem","Points or gift card balance apply at any branch."],
+      ["Analyze","Campaign and retention data roll into reporting."]],
+    accessMobile:[["Cashiers","look up loyalty balance and redeem gift cards at POS"]],
+    accessWeb:[["Branch Manager","runs local promotions and reviews redemption"],["Super Admin","tracks loyalty program performance company-wide"]],
+    integrations:["WhatsApp Business","Paystack"],
+    faqs:[["Does a gift card work across all my branches?","Yes — gift card and loyalty balances are shared across every branch on the same account."],
+      ["Can I run a branch-specific promotion?","Yes — campaigns can be scoped to a single branch or run company-wide."]],
+    related:["online-ordering","team-chat","reports"] },
+
+  "team-chat": { cat:"foh", icon:"chat", title:"Team Chat, RBAC & Custom Roles",
+    tagline:"Branch and department channels, with permissions down to the feature level.",
+    stats:[["Granular","RBAC down to the feature level"],["Custom","roles for any department you define"],["Branch","department, and role-based channels"]],
+    desc:"Team chat keeps every shift in sync without leaving the platform, while role-based access control makes sure a cashier never sees payroll and a supplier never sees your P&L.",
+    features:[["chat","Branch & department channels","Conversations scoped to the people who need them."],
+      ["users","Granular RBAC","Permissions set down to the individual feature."],
+      ["check","Custom roles","Define departments and access unique to your operation."],
+      ["box","Audit trail","Every permission change is timestamped and traceable."]],
+    steps:[["Define","Create a custom role or use a built-in one."],
+      ["Assign","Grant feature-level permissions to that role."],
+      ["Communicate","Staff join the channels relevant to their branch and role."],
+      ["Audit","Permission and message history stay fully traceable."]],
+    accessMobile:[["Any staff role","joins branch and department channels on shift"]],
+    accessWeb:[["Super Admin","defines roles and permissions company-wide"],["HR & Team Leads","manage onboarding into the right channels and roles"]],
+    integrations:["WhatsApp Business"],
+    faqs:[["Can I create a role that doesn't fit the defaults?","Yes — custom roles can be defined with permissions scoped to exactly the features that role needs."],
+      ["Are permission changes logged?","Yes — every permission and role change is timestamped and part of the full audit trail."]],
+    related:["branches","crm","procurement"] },
+
+  branches: { cat:"foh", icon:"map", title:"Branches & Multi-Location",
+    tagline:"A Super Admin console over every branch, with new-site onboarding down to a day.",
+    stats:[["Unlimited","branches on the Enterprise plan"],["1","day to onboard a new branch"],["99.9%","platform uptime during operating hours"]],
+    desc:"Every branch runs on the same ledger and the same modules, so a Super Admin can compare two locations honestly — and a new site can go live in a day using the same setup guides as the first.",
+    features:[["map","Cross-branch console","One view over every branch's operations and financials."],
+      ["chart","Benchmarking","Compare cost ratios, speed, and margin between branches."],
+      ["check","One-day onboarding","New branches follow the same guided setup as any other."],
+      ["users","Per-branch permissions","Staff and managers scoped to the branches they run."]],
+    steps:[["Set up","Configure the new branch using the standard setup guide."],
+      ["Assign","Add staff and managers scoped to that branch."],
+      ["Launch","The branch goes live on the same ledger as the rest."],
+      ["Compare","Performance rolls into cross-branch benchmarking immediately."]],
+    accessMobile:[["Branch staff","work entirely within their assigned branch"]],
+    accessWeb:[["Super Admin","oversees and benchmarks every branch from one console"],["Branch Manager","runs daily operations for their own location"]],
+    integrations:["QuickBooks","Xero","Paystack"],
+    faqs:[["How long does a new branch take to onboard?","Most single-branch operators are fully live within a day using the built-in setup guides."],
+      ["Is there a limit to how many branches I can run?","Starter and Growth plans cap branch count; Enterprise supports unlimited branches with a dedicated onboarding team."]],
+    related:["reports","team-chat","transfers"] }
+};
+
+/* ---------------------------------------------------------------------
+   Build the Products mega menu directly from MODULES, so the nav and
+   the detail pages can never drift out of sync.
+--------------------------------------------------------------------- */
+const CAT_ORDER = ["ops","money","foh"];
+function buildMegaMenu(activeSlug){
+  const cols = CAT_ORDER.map(catKey=>{
+    const items = Object.keys(MODULES).filter(k=>MODULES[k].cat===catKey);
+    const links = items.map(slug=>{
+      const m = MODULES[slug];
+      const active = slug===activeSlug ? ' active' : '';
+      return '<a href="module.html?slug='+slug+'" class="mega-link'+active+'"><span class="dot"></span>'+m.title+'</a>';
+    }).join('');
+    return '<div><div class="mega-col-h">'+CATS[catKey]+'</div>'+links+'</div>';
+  }).join('');
+  document.getElementById('megaProductsCols').innerHTML = cols;
+}
+
+/* ---------------------------------------------------------------------
+   Render the module detail page from the slug in the URL
+--------------------------------------------------------------------- */
+function renderModule(){
+  const params = new URLSearchParams(window.location.search);
+  const slug = params.get('slug') || 'procurement';
+  const m = MODULES[slug] || MODULES.procurement;
+
+  document.title = 'Sandwich — ' + m.title;
+  buildMegaMenu(slug);
+
+  document.getElementById('bcCategory').textContent = CATS[m.cat];
+  document.getElementById('bcTitle').textContent = m.title;
+  document.getElementById('moduleCatBadge').textContent = CATS[m.cat];
+  document.getElementById('moduleIconBadge').innerHTML = ico(m.icon);
+  document.getElementById('moduleTitle').textContent = m.title;
+  document.getElementById('moduleTagline').textContent = m.tagline;
+  document.getElementById('overviewHeading').textContent = 'What ' + m.title.split('&')[0].trim() + ' does';
+  document.getElementById('overviewDesc').textContent = m.desc;
+  document.getElementById('ctaHeading').textContent = 'See ' + m.title + ' running on a restaurant like yours';
+
+  document.getElementById('quickStats').innerHTML = m.stats.map(s=>
+    '<div class="stat-chip"><div class="n">'+s[0]+'</div><div class="l">'+s[1]+'</div></div>'
+  ).join('');
+
+  document.getElementById('featureGrid').innerHTML = m.features.map(f=>
+    '<div class="feat-card"><div class="feat-icon">'+ico(f[0])+'</div><h3>'+f[1]+'</h3><p>'+f[2]+'</p></div>'
+  ).join('');
+
+  const aiEl = document.getElementById('aiStrip');
+  if(m.ai && m.ai.length){
+    aiEl.style.display = 'grid';
+    aiEl.style.gridTemplateColumns = 'repeat(' + m.ai.length + ',1fr)';
+    aiEl.innerHTML = m.ai.map(a=>'<div class="ai-item"><div class="t">'+a[0]+'</div><div class="d">'+a[1]+'</div></div>').join('');
+  } else {
+    aiEl.style.display = 'none';
+  }
+
+  document.getElementById('stepsGrid').innerHTML = m.steps.map((s,i)=>
+    '<div class="step"><span class="num">0'+(i+1)+'</span><h3>'+s[0]+'</h3><p>'+s[1]+'</p></div>'
+  ).join('');
+
+  document.getElementById('accessMobileList').innerHTML = m.accessMobile.map(a=>
+    '<li><strong>'+a[0]+'</strong> — '+a[1]+'</li>'
+  ).join('');
+  document.getElementById('accessWebList').innerHTML = m.accessWeb.map(a=>
+    '<li><strong>'+a[0]+'</strong> — '+a[1]+'</li>'
+  ).join('');
+
+  document.getElementById('integrationRow').innerHTML = m.integrations.map(i=>
+    '<span class="int-pill">'+i+'</span>'
+  ).join('');
+
+  document.getElementById('faqList').innerHTML = m.faqs.map(f=>
+    '<div class="faq-item"><div class="faq-q">'+f[0]+' '+ico('arrow')+'</div><div class="faq-a"><p>'+f[1]+'</p></div></div>'
+  ).join('');
+
+  document.getElementById('relatedGrid').innerHTML = m.related.map(slug2=>{
+    const rm = MODULES[slug2];
+    if(!rm) return '';
+    return '<a class="related-card sweep-on-hover" href="module.html?slug='+slug2+'">'+
+      '<span class="cat">'+CATS[rm.cat]+'</span><h4>'+rm.title+'</h4><p>'+rm.tagline+'</p>'+
+      '<span class="go">Explore module '+ico('arrow')+'</span></a>';
+  }).join('');
+
+  // wire up FAQ accordion for the freshly-injected items
+  document.querySelectorAll('.faq-item').forEach(item=>{
+    const q = item.querySelector('.faq-q');
+    q.addEventListener('click', ()=>{
+      const wasOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(o=> o.classList.remove('open'));
+      if(!wasOpen) item.classList.add('open');
+    });
+  });
+
+  // re-run scroll reveal for injected sections
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+}
+
+/* ---------------------------------------------------------------------
+   Scroll reveal + parallax (same behavior as the homepage)
+--------------------------------------------------------------------- */
+const io = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+}, { threshold: 0.15 });
+
+const parallaxLayers = document.querySelectorAll('.pl');
+let ticking = false;
+function onScroll(){
+  const y = window.scrollY;
+  parallaxLayers.forEach(el=>{
+    const speed = parseFloat(el.dataset.speed || 0.2);
+    el.style.transform = 'translateY(' + ((y - (el.closest('section')?.offsetTop || 0)) * speed * -1 + y * speed) + 'px)';
+  });
+  ticking = false;
+}
+window.addEventListener('scroll', ()=>{ if(!ticking){ requestAnimationFrame(onScroll); ticking = true; } });
+
+renderModule();
+onScroll();
+window.addEventListener('popstate', renderModule);
+
+/* ---------------------------------------------------------------------
+   Chatbot widget — same wiring as the homepage
+--------------------------------------------------------------------- */
+const CHAT_CONFIG = {
+  baseUrl: 'https://ai-staging.sandwichai.co/api/public/chat',
+  platformApiKey: window.SANDWICH_PLATFORM_API_KEY || '',
+};
+let conversationId = null;
+const chatToggle = document.getElementById('chatToggle');
+const chatPanel = document.getElementById('chatPanel');
+const chatClose = document.getElementById('chatClose');
+const chatBody = document.getElementById('chatBody');
+const chatInput = document.getElementById('chatInput');
+const chatSend = document.getElementById('chatSend');
+const quickRepliesWrap = document.getElementById('quickReplies');
+
+chatToggle.addEventListener('click', ()=> chatPanel.classList.toggle('open'));
+chatClose.addEventListener('click', ()=> chatPanel.classList.remove('open'));
+
+function addMessage(text, who){
+  const div = document.createElement('div');
+  div.className = 'msg ' + who;
+  div.textContent = text;
+  chatBody.appendChild(div);
+  chatBody.scrollTop = chatBody.scrollHeight;
+  return div;
+}
+function renderSuggestions(list){
+  const existing = document.getElementById('quickReplies');
+  if(existing) existing.remove();
+  if(!list || !list.length) return;
+  const wrap = document.createElement('div');
+  wrap.className = 'quick-replies';
+  wrap.id = 'quickReplies';
+  list.forEach(s=>{
+    const chip = document.createElement('button');
+    chip.className = 'chip';
+    chip.dataset.q = s;
+    chip.textContent = s;
+    wrap.appendChild(chip);
+  });
+  chatBody.appendChild(wrap);
+  chatBody.scrollTop = chatBody.scrollHeight;
+}
+async function callChatApi(message){
+  const headers = { 'Content-Type': 'application/json' };
+  if (CHAT_CONFIG.platformApiKey) headers['X-API-Key'] = CHAT_CONFIG.platformApiKey;
+  const body = { message };
+  if (conversationId) body.conversation_id = conversationId;
+  const res = await fetch(CHAT_CONFIG.baseUrl, { method:'POST', headers, body: JSON.stringify(body) });
+  if(!res.ok) throw new Error('Chat API responded with ' + res.status);
+  return res.json();
+}
+async function botReply(userText){
+  const typing = document.createElement('div');
+  typing.className = 'typing';
+  typing.innerHTML = '<span></span><span></span><span></span>';
+  chatBody.appendChild(typing);
+  chatBody.scrollTop = chatBody.scrollHeight;
+  try{
+    const data = await callChatApi(userText);
+    typing.remove();
+    if (data.conversation_id) conversationId = data.conversation_id;
+    addMessage(data.message || "Sorry, I didn't catch that — could you rephrase?", 'bot');
+    renderSuggestions(data.suggestions);
+  }catch(err){
+    typing.remove();
+    console.error('Sandwich chat error:', err);
+    addMessage("I'm having trouble reaching the assistant right now. Please try again in a moment, or use \u201cChat with us\u201d below to reach the team directly.", 'err');
+  }
+}
+function sendMessage(text){
+  if(!text.trim()) return;
+  addMessage(text, 'user');
+  chatInput.value = '';
+  botReply(text);
+}
+chatSend.addEventListener('click', ()=> sendMessage(chatInput.value));
+chatInput.addEventListener('keydown', (e)=>{ if(e.key === 'Enter') sendMessage(chatInput.value); });
+chatBody.addEventListener('click', (e)=>{
+  const chip = e.target.closest('.chip');
+  if(chip) sendMessage(chip.dataset.q || chip.textContent);
+});
+</script>
+
+</body>
+</html>
