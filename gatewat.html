@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sign in — Sandwich</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#FFFFFF; --cream-alt:#FAFAF9; --ink:#1E1E1E; --dark:#391B13;
+    --red:#FF0D01; --red-deep:#961D14; --yellow:#FEC60F; --green:#208537; --white:#FFFFFF;
+    --line: rgba(57,27,19,0.13); --line-soft: rgba(57,27,19,0.08);
+    --shadow-sm: 0 2px 10px rgba(57,27,19,0.06); --shadow-md: 0 14px 32px rgba(57,27,19,0.10); --shadow-lg: 0 34px 70px -22px rgba(57,27,19,0.32);
+    --radius-sm:14px; --radius-md:22px; --radius-lg:30px;
+    --glass-bg: linear-gradient(158deg, rgba(255,255,255,0.92) 0%, rgba(255,255,255,0.62) 38%, rgba(255,255,255,0.34) 70%, rgba(255,255,255,0.48) 100%);
+    --glass-border: rgba(255,255,255,0.95);
+    --glass-blur: blur(30px) saturate(225%) brightness(1.06);
+    --glass-shadow: inset 0 1.5px 0 rgba(255,255,255,1), inset 0 -1px 0 rgba(57,27,19,0.07), inset 1px 0 0 rgba(255,255,255,0.45), inset -1px 0 0 rgba(57,27,19,0.03), 0 30px 60px -24px rgba(57,27,19,0.34), 0 2px 8px rgba(57,27,19,0.06);
+  }
+  *{box-sizing:border-box;}
+  body{ margin:0; background:var(--cream); color:var(--ink); font-family:'Plus Jakarta Sans',sans-serif; -webkit-font-smoothing:antialiased; }
+  .display{ font-family:'Fredoka', sans-serif; }
+  a{ text-decoration:none; color:inherit; }
+  img,svg{ display:block; }
+
+  .page{ min-height:100vh; display:grid; grid-template-columns:1fr 1fr; }
+
+  /* ===== glass utility (same recipe as landing page) ===== */
+  .glass{ position:relative; background:var(--glass-bg); backdrop-filter:var(--glass-blur); -webkit-backdrop-filter:var(--glass-blur); border:1px solid var(--glass-border); box-shadow:var(--glass-shadow); overflow:hidden; }
+  .glass::before{ content:""; position:absolute; inset:0; border-radius:inherit; pointer-events:none; background:radial-gradient(130% 100% at 12% -12%, rgba(255,255,255,0.85), rgba(255,255,255,0) 52%); mix-blend-mode:overlay; }
+  .glass > *{ position:relative; z-index:1; }
+
+  .sweep{ position:relative; overflow:hidden; }
+  .sweep::after{ content:""; position:absolute; top:-60%; left:-70%; width:38%; height:220%; background:linear-gradient(120deg, transparent 0%, rgba(255,255,255,0.0) 35%, rgba(255,255,255,0.8) 50%, rgba(255,255,255,0.0) 65%, transparent 100%); transform:translateX(-40%) rotate(10deg); transition:transform .85s cubic-bezier(.2,.7,.3,1); pointer-events:none; mix-blend-mode:overlay; z-index:2; }
+  .sweep:hover::after{ transform:translateX(280%) rotate(10deg); }
+
+  /* ===== LEFT — sign in ===== */
+  .left{ display:flex; align-items:center; justify-content:center; padding:64px 56px; position:relative; }
+  .left-inner{ width:100%; max-width:400px; }
+  .logo{ display:flex; justify-content:center; margin-bottom:28px; }
+  .logo .mark{ width:44px; height:44px; }
+  h1.hdg{ font-family:'Fredoka'; font-weight:600; font-size:29px; line-height:1.2; text-align:center; color:var(--dark); margin:0 0 10px; letter-spacing:-0.01em; }
+  h1.hdg .accent{ color:var(--red); }
+  p.sub{ text-align:center; font-size:14.5px; color:rgba(30,30,30,0.6); margin:0 0 32px; }
+
+  .role-list{ display:flex; flex-direction:column; gap:14px; }
+  .role-card{ display:flex; align-items:center; gap:16px; padding:18px 18px; border-radius:var(--radius-md); cursor:pointer; transition:transform .22s ease, box-shadow .22s ease; border:1px solid var(--line-soft); background:#fff; box-shadow:var(--shadow-sm); }
+  .role-card:hover{ transform:translateY(-3px); box-shadow:var(--shadow-md); }
+  .role-icon{ width:46px; height:46px; border-radius:13px; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+  .role-icon.i-red{ background:rgba(255,13,1,0.09); }
+  .role-icon.i-yellow{ background:rgba(254,198,15,0.28); }
+  .role-icon.i-green{ background:rgba(32,133,55,0.12); }
+  .role-icon svg{ width:22px; height:22px; stroke-width:1.7; stroke-linecap:round; stroke-linejoin:round; fill:none; }
+  .i-red svg{ stroke:var(--red); } .i-yellow svg{ stroke:#A8790B; } .i-green svg{ stroke:var(--green); }
+  .role-copy{ flex:1; min-width:0; }
+  .role-copy .rt{ font-family:'Fredoka'; font-weight:600; font-size:15.5px; color:var(--dark); margin-bottom:3px; }
+  .role-copy .rd{ font-size:12.5px; color:rgba(30,30,30,0.58); line-height:1.45; }
+  .role-arrow{ width:30px; height:30px; border-radius:50%; background:rgba(57,27,19,0.06); display:flex; align-items:center; justify-content:center; flex-shrink:0; transition:background .2s ease, transform .2s ease; }
+  .role-card:hover .role-arrow{ background:var(--red); transform:translateX(2px); }
+  .role-arrow svg{ width:13px; height:13px; stroke:var(--dark); transition:stroke .2s ease; }
+  .role-card:hover .role-arrow svg{ stroke:#fff; }
+
+  .foot-note{ text-align:center; font-size:13px; color:rgba(30,30,30,0.6); margin-top:32px; }
+  .foot-note a{ font-weight:700; color:var(--dark); text-decoration:underline; text-underline-offset:3px; }
+  .foot-note a:hover{ color:var(--red); }
+
+  /* ===== RIGHT — showcase ===== */
+  .right{ position:relative; background:var(--cream-alt); display:flex; flex-direction:column; align-items:center; justify-content:center; padding:56px 48px; overflow:hidden; border-left:1px solid var(--line-soft); }
+  .diag{ position:absolute; inset:0; opacity:0.4; background-image:repeating-linear-gradient(-45deg, rgba(57,27,19,0.05) 0 1px, transparent 1px 26px); -webkit-mask-image:linear-gradient(180deg, black, transparent 78%); mask-image:linear-gradient(180deg, black, transparent 78%); }
+  .glow{ position:absolute; border-radius:50%; pointer-events:none; }
+  .glow.g1{ top:-140px; right:-120px; width:420px; height:420px; background:radial-gradient(circle, rgba(255,13,1,0.10), rgba(255,13,1,0) 70%); }
+  .glow.g2{ bottom:-100px; left:-80px; width:340px; height:340px; background:radial-gradient(circle, rgba(254,198,15,0.16), rgba(254,198,15,0) 70%); }
+
+  .showcase{ position:relative; z-index:1; width:100%; max-width:460px; }
+  .panel{ border-radius:26px; padding:0; background:#fff; border:1px solid var(--line-soft); box-shadow:var(--shadow-lg); overflow:hidden; }
+  .panel-bar{ display:flex; align-items:center; gap:8px; padding:14px 18px; border-bottom:1px solid var(--line-soft); }
+  .panel-bar i{ width:8px; height:8px; border-radius:50%; }
+  .panel-bar i:nth-child(1){ background:#F0A69B; } .panel-bar i:nth-child(2){ background:var(--yellow); } .panel-bar i:nth-child(3){ background:#A9D6AE; }
+  .panel-bar .lbl{ margin-left:8px; font-size:11px; font-weight:700; color:var(--dark); }
+
+  .dash{ padding:16px 18px 18px; background:#fff; }
+  .dash-top{ display:flex; gap:16px; font-size:11.5px; font-weight:700; color:rgba(30,30,30,0.4); border-bottom:1px solid var(--line-soft); padding-bottom:9px; margin-bottom:12px; }
+  .dash-top span{ padding-bottom:8px; }
+  .dash-top .on{ color:var(--dark); border-bottom:2px solid var(--red); }
+  .filters{ display:flex; gap:6px; margin-bottom:14px; }
+  .filters span{ font-size:9.5px; font-weight:600; color:var(--dark); background:#F5F5F4; border:1px solid var(--line-soft); border-radius:7px; padding:5px 8px; white-space:nowrap; }
+
+  .stat-grid{ display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:14px; }
+  .stat-box{ background:#F9F9F8; border:1px solid var(--line-soft); border-radius:12px; padding:10px 12px; }
+  .stat-box .sl{ font-size:9.5px; color:rgba(30,30,30,0.5); margin-bottom:5px; }
+  .stat-box .sv{ font-family:'Fredoka'; font-weight:600; font-size:14.5px; color:var(--dark); }
+  .stat-box .sc{ font-size:9px; color:var(--green); margin-top:3px; font-weight:700; }
+
+  .chart-card{ background:#F9F9F8; border:1px solid var(--line-soft); border-radius:12px; padding:12px 14px; }
+  .chart-card .ct{ font-size:10.5px; font-weight:700; color:var(--dark); margin-bottom:10px; }
+  .bar-row{ display:flex; align-items:center; gap:8px; margin-bottom:7px; }
+  .bar-row .bl{ width:52px; font-size:9px; color:rgba(30,30,30,0.55); flex-shrink:0; }
+  .bar-track{ flex:1; height:9px; border-radius:5px; background:rgba(57,27,19,0.07); overflow:hidden; }
+  .bar-fill{ height:100%; border-radius:5px; background:linear-gradient(90deg, var(--red), var(--red-deep)); }
+  .bar-row .bv{ width:44px; font-size:9px; font-weight:700; color:var(--dark); text-align:right; flex-shrink:0; }
+
+  .showcase-copy{ text-align:center; margin-top:30px; }
+  .showcase-copy h2{ font-family:'Fredoka'; font-weight:600; font-size:24px; color:var(--dark); margin:0 0 8px; }
+  .showcase-copy p{ font-size:13.5px; color:rgba(30,30,30,0.6); margin:0; max-width:320px; margin-inline:auto; }
+  .dots{ display:flex; justify-content:center; gap:6px; margin-top:22px; }
+  .dots span{ width:6px; height:6px; border-radius:50%; background:rgba(57,27,19,0.2); }
+  .dots span.on{ width:20px; border-radius:4px; background:var(--dark); }
+
+  @media (max-width: 900px){
+    .page{ grid-template-columns:1fr; }
+    .right{ order:-1; border-left:none; border-bottom:1px solid var(--line-soft); padding:40px 28px; }
+    .left{ padding:48px 24px; }
+    .showcase{ max-width:380px; }
+  }
+</style>
+</head>
+<body>
+
+<svg style="display:none" aria-hidden="true">
+  <symbol id="emblem" viewBox="0 0 100 99">
+    <path d="M 51.88 48.52 C 50.61 48.52 49.30 48.33 47.96 47.89 C 43.65 46.50 40.81 43.14 38.30 40.16 C 36.99 38.62 35.21 36.50 34.18 36.15 C 34.03 36.10 32.84 35.78 29.21 38.57 L 27.57 39.88 C 24.52 42.31 21.08 45.07 16.65 46.04 C 13.24 46.78 9.53 46.10 6.49 44.13 C 3.30 42.06 1.09 38.76 0.28 34.84 L 0.15 33.61 C 0.15 15.08 15.23 0.00 33.76 0.00 L 93.76 0.00 C 97.12 0.00 99.85 2.73 99.85 6.08 C 99.85 9.44 97.12 12.16 93.76 12.16 L 33.76 12.16 C 22.18 12.16 12.72 21.39 12.33 32.87 C 12.50 33.35 12.76 33.70 13.11 33.93 C 13.49 34.17 13.86 34.19 14.06 34.15 C 15.70 33.79 17.87 32.06 19.97 30.38 L 21.81 28.93 C 24.02 27.23 30.77 22.07 38.18 24.66 C 42.35 26.11 45.13 29.41 47.58 32.32 C 48.90 33.87 50.70 36.00 51.69 36.32 C 52.33 36.52 53.96 35.95 58.28 32.10 C 61.93 28.86 68.73 22.84 76.63 25.31 C 80.35 26.47 83.08 29.22 85.26 31.43 L 85.73 31.90 C 86.63 32.80 87.28 33.38 87.76 33.75 C 88.32 30.82 91.21 28.60 94.04 28.76 C 97.39 28.92 100.00 31.68 99.84 35.04 C 99.67 38.43 98.22 41.51 95.74 43.71 C 93.51 45.68 90.70 46.69 87.84 46.51 C 83.38 46.20 80.05 43.43 77.11 40.48 L 76.63 39.99 C 75.45 38.81 73.85 37.18 73.00 36.92 C 72.41 36.73 70.74 37.30 66.37 41.19 C 63.34 43.88 58.14 48.52 51.88 48.52" fill="#FF0D01"/>
+    <path d="M 66.24 98.51 L 6.24 98.51 C 2.88 98.51 0.16 95.78 0.16 92.43 C 0.16 89.07 2.88 86.34 6.24 86.34 L 66.24 86.34 C 77.82 86.34 87.28 77.12 87.67 65.63 C 87.50 65.16 87.24 64.81 86.89 64.58 C 86.51 64.34 86.13 64.31 85.94 64.36 C 84.31 64.71 82.14 66.45 80.04 68.12 L 78.19 69.58 C 75.97 71.28 69.23 76.43 61.82 73.85 C 57.65 72.39 54.87 69.10 52.42 66.19 C 51.10 64.64 49.30 62.51 48.31 62.19 C 47.67 61.99 46.04 62.56 41.72 66.40 C 38.07 69.64 31.27 75.65 23.37 73.19 C 19.64 72.03 16.91 69.27 14.72 67.06 L 14.26 66.61 C 13.37 65.70 12.72 65.13 12.24 64.75 C 11.67 67.68 8.90 69.94 5.96 69.75 C 2.61 69.58 0.00 66.83 0.16 63.47 C 0.33 60.08 1.78 57.00 4.26 54.80 C 6.48 52.82 9.27 51.82 12.16 52.00 C 16.63 52.32 19.95 55.08 22.89 58.02 L 23.36 58.50 C 24.54 59.69 26.15 61.32 27.00 61.58 C 27.59 61.77 29.26 61.21 33.63 57.32 C 37.27 54.08 44.06 48.03 52.04 50.61 C 56.35 52.00 59.19 55.37 61.70 58.34 C 63.01 59.89 64.79 62.00 65.82 62.36 C 65.93 62.40 67.15 62.72 70.79 59.93 L 72.45 58.62 C 75.48 56.19 78.93 53.44 83.34 52.47 C 86.77 51.72 90.49 52.42 93.51 54.38 C 96.70 56.45 98.91 59.74 99.72 63.66 L 99.85 64.89 C 99.85 83.43 84.77 98.51 66.24 98.51" fill="#FF0D01"/>
+  </symbol>
+</svg>
+
+<div class="page">
+
+  <!-- LEFT: role selection -->
+  <div class="left">
+    <div class="left-inner">
+      <div class="logo"><svg class="mark"><use href="#emblem"/></svg></div>
+      <h1 class="hdg">Welcome to <span class="accent">Sandwich</span></h1>
+      <p class="sub">Select your role to continue</p>
+
+      <div class="role-list">
+        <a href="#" class="role-card sweep">
+          <div class="role-icon i-red">
+            <svg viewBox="0 0 24 24"><path d="M4 21V5a1 1 0 011-1h9a1 1 0 011 1v16M4 21h16M9 8h.01M9 12h.01M13 8h.01M13 12h.01M14 21v-4a1 1 0 00-1-1h-2a1 1 0 00-1 1v4M18 21v-9l2 1v8"/></svg>
+          </div>
+          <div class="role-copy">
+            <div class="rt">Organization Manager</div>
+            <div class="rd">Full system access, organization management</div>
+          </div>
+          <div class="role-arrow"><svg viewBox="0 0 16 16" fill="none"><path d="M6 3l5 5-5 5" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        </a>
+
+        <a href="#" class="role-card sweep">
+          <div class="role-icon i-yellow">
+            <svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.2"/><path d="M3 20c0-3.5 2.7-5.8 6-5.8s6 2.3 6 5.8"/><path d="M17 4.2a3 3 0 010 5.8M19.5 20c0-2.7-1.5-4.6-3.5-5.4"/></svg>
+          </div>
+          <div class="role-copy">
+            <div class="rt">Branch Manager</div>
+            <div class="rd">Single branch operations and staff management</div>
+          </div>
+          <div class="role-arrow"><svg viewBox="0 0 16 16" fill="none"><path d="M6 3l5 5-5 5" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        </a>
+
+        <a href="#" class="role-card sweep">
+          <div class="role-icon i-green">
+            <svg viewBox="0 0 24 24"><path d="M4 9l1.5-4h13L20 9M4 9h16M4 9v9a1 1 0 001 1h14a1 1 0 001-1V9M9 13a2 2 0 004 0"/></svg>
+          </div>
+          <div class="role-copy">
+            <div class="rt">Supplier</div>
+            <div class="rd">Manage your products and supplier operations</div>
+          </div>
+          <div class="role-arrow"><svg viewBox="0 0 16 16" fill="none"><path d="M6 3l5 5-5 5" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        </a>
+      </div>
+
+      <p class="foot-note">Don't have an account? <a href="#">Create Account</a></p>
+    </div>
+  </div>
+
+  <!-- RIGHT: product showcase -->
+  <div class="right">
+    <div class="diag"></div>
+    <div class="glow g1"></div>
+    <div class="glow g2"></div>
+
+    <div class="showcase">
+      <div class="panel">
+        <div class="panel-bar"><i></i><i></i><i></i><span class="lbl">Accounting &amp; Tax</span></div>
+        <div class="dash">
+          <div class="dash-top"><span class="on">Profit Analysis</span><span>Sales Value</span><span>Tax &amp; Compliance</span></div>
+          <div class="filters"><span>Last 30 days</span><span>All Branches</span><span>Tax type: All</span></div>
+          <div class="stat-grid">
+            <div class="stat-box"><div class="sl">Total Revenue</div><div class="sv">₦12,240,000</div><div class="sc">+12% vs last month</div></div>
+            <div class="stat-box"><div class="sl">Gross Profit</div><div class="sv">₦5,600,000</div><div class="sc">45% gross margin</div></div>
+            <div class="stat-box"><div class="sl">Cost of Goods Sold</div><div class="sv">₦6,800,000</div><div class="sc">+5% vs last month</div></div>
+            <div class="stat-box"><div class="sl">Net Profit</div><div class="sv">₦3,600,000</div><div class="sc">25% net margin</div></div>
+          </div>
+          <div class="chart-card">
+            <div class="ct">Profit by Category</div>
+            <div class="bar-row"><span class="bl">Protein</span><div class="bar-track"><div class="bar-fill" style="width:88%;"></div></div><span class="bv">₦1.2m</span></div>
+            <div class="bar-row"><span class="bl">Grains</span><div class="bar-track"><div class="bar-fill" style="width:64%;"></div></div><span class="bv">₦900k</span></div>
+            <div class="bar-row"><span class="bl">Beverages</span><div class="bar-track"><div class="bar-fill" style="width:52%;"></div></div><span class="bv">₦750k</span></div>
+            <div class="bar-row"><span class="bl">Spices</span><div class="bar-track"><div class="bar-fill" style="width:40%;"></div></div><span class="bv">₦600k</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="showcase-copy">
+        <h2>Boost Productivity</h2>
+        <p>Streamline your workflow and get more done in less time.</p>
+        <div class="dots"><span class="on"></span><span></span><span></span><span></span></div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>
